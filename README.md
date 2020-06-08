@@ -1,0 +1,1 @@
+spotgeo-challenge
