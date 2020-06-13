@@ -3,3 +3,6 @@ data/spotGEO/
 .ipynb_checkpoints/
 .DS_Store
 *.pkl
+*.c
+*.so
+build/

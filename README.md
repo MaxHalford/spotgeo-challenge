@@ -21,3 +21,9 @@ https://kelvins.esa.int/spot-the-geo-satellites/data/
 5. Postprocess predictions across a sequence.
 
 Coordinate starts at the top left. x is the column, and y is the row.
+
+## Steps to reproduce
+
+```sh
+python setup.py build_ext --inplace
+```
