@@ -9,16 +9,16 @@ ctypedef np.uint8_t uint8
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef find_median(uint [:] hist):
+cdef (uint8, uint) find_median(uint [:] hist):
 
     cdef uint cumsum
     cdef uint total
     cdef int i
-    for i in range(len(hist)):
+    for i in range(hist.shape[0]):
         total += hist[i]
     cdef uint8 median
 
-    for median in range(len(hist)):
+    for median in range(hist.shape[0]):
         cumsum += hist[median]
         if cumsum >= total // 2:
             return median, cumsum
