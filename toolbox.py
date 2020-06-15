@@ -1,6 +1,58 @@
+import json
+
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from mpl_toolkits.axes_grid1 import ImageGrid
+import tqdm
+
+
+def save_predictions(predictions, n_sequences, path):
+    """
+
+    predictions should be a dataframe with the following structure:
+
+    sequence  frame  r   c
+    1         1      7   339    False
+                     10  264     True
+                     18  40      True
+                     20  462    False
+                     26  65      True
+
+    """
+
+    sub = []
+
+    for sequence in tqdm.tqdm(range(1, n_sequences + 1), position=0):
+
+        for frame in range(1, 6):
+
+
+            try:
+                g = predictions.loc[sequence, frame]
+            except KeyError:
+                sub.append({
+                    'sequence_id': int(sequence),
+                    'frame': int(frame),
+                    'num_objects': 0,
+                    'object_coords': []
+                })
+                continue
+
+            coords = []
+
+            for (*_, r, c), is_sat in g.iteritems():
+                if is_sat and 0 <= r <= 480 and 0 <= c <= 640:
+                    coords.append([c - .5, r - .5])
+
+            sub.append({
+                'sequence_id': int(sequence),
+                'frame': int(frame),
+                'num_objects': len(coords),
+                'object_coords': coords
+            })
+
+    with open(path, 'w') as f:
+        json.dump(sub, f)
 
 
 def viz_sequence(seq, df):

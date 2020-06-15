@@ -8,7 +8,7 @@ https://kelvins.esa.int/spot-the-geo-satellites/data/
 - The coordinates from train_anno.json have as reference the bottom left corner, whereas images start at the top left (?????)
 - scikit-image starts at the top left
 
-- 1281 train sequences
+- 1280 train sequences
 - 5120 test sequences
 
 

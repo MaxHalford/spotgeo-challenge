@@ -128,9 +128,7 @@ def score_sequences(X, Y, tau=10, eps=3, taboolist=[]):
     """ scores a complete submission except sequence_ids that are listed
         in the taboolist. """
     # check that each sequence has been predicted
-    print(X.keys())
-    print(Y.keys())
-    assert set(X.keys()) == set(Y.keys())
+    #assert set(X.keys()) == set(Y.keys())
 
     # we filter the identifiers from the taboolist
     identifiers = set(X.keys()) - set(taboolist)
@@ -180,7 +178,7 @@ def validate_json(labels):
     missing_identifiers = needed_identifiers - set(identifiers)
 
     if len(missing_identifiers) > 0:
-        raise ValueError('Error. Your submission needs to predict the following sequence_ids and frames: {}'.format(missing_identifiers))
+        raise ValueError(f'Error. Your submission is missing {len(missing_identifiers)} entries')
 
     # 4. Make sure the number of predicted objects corresponds to the correct array dimensions
     for label in labels:
@@ -196,15 +194,7 @@ if __name__ == '__main__':
     if len(sys.argv)  not in [2, 3]:
         print('Usage: \n\tValidation: python my_anno.json\n\tscoring: python my_anno.json true_labels.json')
     else:
-        print('Validating... ', end='', flush=True)
-        with open(sys.argv[1], 'rt') as fp:
-            jsonfile = json.load(fp)
-            valid = validate_json(jsonfile)
-
-        if valid:
-            print('passed!')
 
         if len(sys.argv) == 3:
-            print('Compute score... ', end='', flush=True)
             score, mse = compute_score(sys.argv[1], sys.argv[2])
             print('Score: {:0.6f}, (MSE: {:0.6f})'.format(score, mse))
