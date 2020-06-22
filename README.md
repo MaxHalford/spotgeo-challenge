@@ -11,7 +11,6 @@ https://kelvins.esa.int/spot-the-geo-satellites/data/
 - 1280 train sequences
 - 5120 test sequences
 
-
 ## Strategy
 
 1. For each image, determine which pixels are "interesting".
@@ -20,7 +19,39 @@ https://kelvins.esa.int/spot-the-geo-satellites/data/
 4. Train.
 5. Postprocess predictions across a sequence.
 
-Coordinate starts at the top left. x is the column, and y is the row.
+## To do
+
+- imblearn instead of weighting instances
+- gaussian blur might for finding interesting points
+- consider rectangle regions instead of squares
+- check if playing with the classification threshold influences the F1 score?
+
+**Difficult sequences to spot**
+
+- 102
+- 104
+- 112
+- 126
+- 140
+- 146!
+- 155
+- 157
+- 165
+- 172
+- 182
+- 184
+- 188
+- 193
+- 197
+- 205
+- 216
+- 221
+- 233
+- 242
+- 245
+- 252
+- 283
+- 286
 
 ## Steps to reproduce
 
