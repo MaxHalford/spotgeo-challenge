@@ -7,3 +7,4 @@
 build/
 *.json
 data/*
+*.pyc
