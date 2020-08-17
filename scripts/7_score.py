@@ -8,7 +8,7 @@ import tqdm
 
 import toolbox
 
-THRESHOLD = .29  # .32 0.138132, (MSE: 20551.285897) (last commit is .42)
+THRESHOLD = .29
 
 oof = pd.read_pickle('data/oof.pkl')
 oof = oof[oof > THRESHOLD].sort_index()

@@ -21,7 +21,7 @@ model = lightgbm.LGBMClassifier(
     num_leaves=2 ** 6,
     learning_rate=.01,
     min_child_samples=30,
-    #scale_pos_weight=2,
+    scale_pos_weight=3,
     random_state=42,
 )
 

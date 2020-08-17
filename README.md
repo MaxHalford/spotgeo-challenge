@@ -19,12 +19,23 @@ https://kelvins.esa.int/spot-the-geo-satellites/data/
 4. Train.
 5. Postprocess predictions across a sequence.
 
-## To do
+   precision    recall  f1-score   support
 
-- imblearn instead of weighting instances
-- gaussian blur might for finding interesting points
-- consider rectangle regions instead of squares
-- check if playing with the classification threshold influences the F1 score?
+         0.0     0.9993    0.9999    0.9996   3928795
+         1.0     0.9316    0.7217    0.8133      9813
+
+    accuracy                         0.9992   3938608
+   macro avg     0.9655    0.8608    0.9065   3938608
+weighted avg     0.9991    0.9992    0.9991   3938608
+
+precision    recall  f1-score   support
+
+         0.0     0.9994    0.9998    0.9996   3928795
+         1.0     0.9003    0.7583    0.8232      9813
+
+    accuracy                         0.9992   3938608
+   macro avg     0.9498    0.8790    0.9114   3938608
+weighted avg     0.9991    0.9992    0.9992   3938608
 
 **Difficult sequences to spot**
 
