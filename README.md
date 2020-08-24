@@ -1,72 +1,23 @@
-spotgeo-challenge
+# spotGEO challenge
 
+This repository contains my solution for the [spotGEO challenge](https://kelvins.esa.int/spot-the-geo-satellites/) organized by the Advanced Concepts Team at the European Space Agency. The end goal was to detect satellite positions from sequences of 480x640 grayscale images. I wrote a high-level overview of my solution, which you can find [here](explanation.pdf).
 
-https://kelvins.esa.int/spot-the-geo-satellites/data/
+In terms of code, I organised my solution into 6 scripts:
 
-## Data
+1. [Median calculation](scripts/1_medians.py): this script applies a median filter to each image, and stores the result into the `data/medians` directory.
+2. [Interesting pixels](scripts/2_regions.py): I used this script to extract interesting pixels, which are pixels that are brighted than their surroundings. This allowed me to concentrate on a small subset of pixels, and thus lower the computational burden for the rest of the pipeline.
+3. [Pixel annotation](scripts/3_annotate.py): this script is responsible for assigning the satellite sightings provided by the competition organisers to the interesting pixels. This makes use of scipy's [`optimize.linear_sum_assignment`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html) function.
+4. [Feature extraction](scripts/4_features.py): this script extracts features for each interesting pixel. It's quite straightforward, and simply computes descriptive statistics for each square region surrounding each pixel.
+5. [Machine learning](scripts/5_learn.py): this fits a bagged version of LightGBM to the extracted features and the assigned annotations.
+6. [Post-processing](scripts/6_score.py): this applies the post-processing step which is described in the penultimate section of the [explanation paper](explanation.pdf). It also computes the out-of-fold performance on the training set by executed the [validation script](validation.py) provided by the competition's organisers.
 
-- The coordinates from train_anno.json have as reference the bottom left corner, whereas images start at the top left (?????)
-- scikit-image starts at the top left
-
-- 1280 train sequences
-- 5120 test sequences
-
-## Strategy
-
-1. For each image, determine which pixels are "interesting".
-2. Annotate each interesting region.
-3. Calculate features for each interesting region.
-4. Train.
-5. Postprocess predictions across a sequence.
-
-   precision    recall  f1-score   support
-
-         0.0     0.9993    0.9999    0.9996   3928795
-         1.0     0.9316    0.7217    0.8133      9813
-
-    accuracy                         0.9992   3938608
-   macro avg     0.9655    0.8608    0.9065   3938608
-weighted avg     0.9991    0.9992    0.9991   3938608
-
-precision    recall  f1-score   support
-
-         0.0     0.9994    0.9998    0.9996   3928795
-         1.0     0.9003    0.7583    0.8232      9813
-
-    accuracy                         0.9992   3938608
-   macro avg     0.9498    0.8790    0.9114   3938608
-weighted avg     0.9991    0.9992    0.9992   3938608
-
-**Difficult sequences to spot**
-
-- 102
-- 104
-- 112
-- 126
-- 140
-- 146!
-- 155
-- 157
-- 165
-- 172
-- 182
-- 184
-- 188
-- 193
-- 197
-- 205
-- 216
-- 221
-- 233
-- 242
-- 245
-- 252
-- 283
-- 286
-- 291
-
-## Steps to reproduce
+**TLDR**
 
 ```sh
-python setup.py build_ext --inplace
+python scripts/1_medians.py
+python scripts/2_regions.py
+python scripts/3_annotate.py
+python scripts/4_features.py
+python scripts/5_learn.py
+python scripts/6_score.py
 ```
