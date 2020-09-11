@@ -11,7 +11,7 @@ In terms of code, I organised my solution into 6 scripts:
 5. [Machine learning](scripts/5_learn.py): this fits a bagged version of LightGBM to the extracted features and the assigned annotations.
 6. [Post-processing](scripts/6_score.py): this applies the post-processing step which is described in the penultimate section of the [explanation paper](explanation.pdf). It also computes the out-of-fold performance on the training set by executed the [validation script](validation.py) provided by the competition's organisers.
 
-**TLDR**
+TLDR:
 
 ```sh
 python scripts/1_medians.py
@@ -21,3 +21,7 @@ python scripts/4_features.py
 python scripts/5_learn.py
 python scripts/6_score.py
 ```
+
+I managed to finish at 7th spot. The following graph shows the rankings over the duration of the competition -- my username is `mhalford`:
+
+![spotgeorace](https://kelvins.esa.int/media/competitions/spot-the-geo-satellites/spotgeorace.png)
