@@ -24,4 +24,6 @@ python scripts/6_score.py
 
 I managed to finish at 7th spot. The following graph shows the rankings over the duration of the competition -- my username is `mhalford`:
 
-![spotgeorace](https://kelvins.esa.int/media/competitions/spot-the-geo-satellites/spotgeorace.png)
+<div align="center">
+  <img href="https://kelvins.esa.int/media/competitions/spot-the-geo-satellites/spotgeorace.png" />
+</div>
