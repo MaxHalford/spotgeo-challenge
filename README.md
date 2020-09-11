@@ -22,7 +22,7 @@ python scripts/5_learn.py
 python scripts/6_score.py
 ```
 
-I managed to finish at 7th spot. The following graph shows the rankings over the duration of the competition -- my username is `mhalford`:
+I managed to finish at 7th spot. The following graph shows the rankings over the duration of the competition; my username is `mhalford`:
 
 <div align="center">
   <img src="spotgeorace.png" />
