@@ -8,7 +8,7 @@ import tqdm
 
 regions = []
 
-for part in ['train']:
+for part in ['train', 'test']:
 
     for sequence_path in tqdm.tqdm(list(pathlib.Path(f'data/spotGEO/{part}').glob('*')), position=0):
         if sequence_path.name == '.DS_Store': continue
